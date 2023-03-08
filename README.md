@@ -1,1 +1,1 @@
-# BuscaExponencial
+# Busca exponencial
