@@ -21,16 +21,6 @@ Alunos *criaAluno(char nome[81], int matricula, float documento)
     return a;
 }
 
-void *exibirAluno(Alunos *alunos)
-{
-    printf("%s", alunos->nome);
-}
-
-void libera(Alunos **aluno)
-{
-    free(aluno);
-}
-
 int buscaExponencial(Alunos **alunos, int tamanho, int valor)
 { // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
     int i = 1;
@@ -49,4 +39,9 @@ int buscaExponencial(Alunos **alunos, int tamanho, int valor)
         }
     }
     return -1; // Se o valor não for encontrado, retorna -1
+}
+
+void libera(Alunos **aluno)
+{
+    free(aluno);
 }
