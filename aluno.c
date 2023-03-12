@@ -19,6 +19,19 @@ Alunos *buscaAluno(char nome[81])
     return a;
 }
 
+Alunos* criar_aluno(char nome[81], int matricula, float documento) {
+    Alunos * aluno = (Alunos*) malloc(sizeof(Alunos));
+    if(aluno == NULL)
+    {
+        printf("Erro na alocação da struct aluno!");
+        exit(1);
+    }
+    aluno->nome = nome;
+    aluno->matricula = matricula;
+    aluno->documento = documento;
+    return aluno;
+}  
+
 void libera(Alunos *aluno)
 {
     free(aluno);
