@@ -1,5 +1,9 @@
 typedef struct alunos Alunos;
 
-Alunos *buscaAluno(char nome[81]);
+Alunos *criaAluno(char nome[81], int matricula, float documento);
+
+void * exibirAluno(Alunos * alunos);
+
+int buscaExponencial(Alunos ** alunos, int tamanho, int valor);
 
 void libera(Alunos *aluno);

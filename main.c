@@ -4,11 +4,10 @@
 
 #include "aluno.h"
 
+Alunos * alunos[4];
+
 int main(void)
 {
-    Alunos *alunos;
-    char str[81];
-
     FILE *aAluno = fopen("../alunos/aluno.txt", "r");
     if (aAluno == NULL)
     {
@@ -16,10 +15,26 @@ int main(void)
         return 1;
     }
 
-    fgets(str, 81, aAluno);
-    printf("%s", str);
+    char nome[81];
+    int matricula;
+    float documento;
+    int i = 0;
 
-    libera(alunos);
+    while(!(feof(aAluno))){
+        fscanf(aAluno, "%s %d %f", nome, &matricula, &documento);
+        // printf("%s\t%d\t%.0f\n", nome, matricula, documento);
+        alunos[i] = criaAluno(nome, matricula, documento);
+        i++;
+    }
+
+    int posicao = buscaExponencial(alunos, 4, 4);
+    if (posicao == -1) {
+        printf("Valor nao encontrado");
+    } else {
+        printf("Valor encontrado na posicao %d", posicao);
+    }
+    
+    // libera(alunos);
     fclose(aAluno);
 
     return 0;
