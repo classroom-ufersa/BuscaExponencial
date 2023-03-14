@@ -24,6 +24,8 @@ Alunos *criaAluno(char nome[81], int matricula, float documento)
 int buscaExponencial(Alunos **alunos, int tamanho, int valor)
 { // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
     int i = 1;
+    
+    
     while (i < tamanho && alunos[i]->matricula <= valor)
     {           // Encontra o intervalo onde o valor pode estar
         i *= 2; // Dobro do tamanho do intervalo
@@ -41,25 +43,20 @@ int buscaExponencial(Alunos **alunos, int tamanho, int valor)
 
 int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
 { // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
-    int i = 1;
-    int mat = 0;
-    for (int j = 0; j < tamanho; j++)
-    {
-        if (strcmp(nome, alunos[j]->nome) == 0)
-        {
-            mat = alunos[j]->matricula;
-            break;
-        }
+
+    if(alunos[0]->nome == nome){
+        return 0;
     }
 
-    while (i < tamanho && alunos[i]->matricula <= mat)
+    int i = 1;
+    while (i < 6 && strcmp(alunos[i]->nome, nome) <= 0)
     {           // Encontra o intervalo onde o valor pode estar
         i *= 2; // Dobro do tamanho do intervalo
     }
     int j;
     for (j = i / 2; j < i; j++)
     { // Busca linear no intervalo
-        if (alunos[j]->matricula == mat)
+        if ((strcmp(alunos[j]->nome, nome) == 0))
         { // Se o valor for encontrado, retorna a posição
             return j;
         }

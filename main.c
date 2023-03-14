@@ -27,11 +27,11 @@ int main(void)
         i++;
     }
 
-    printf("Informe o numero da matricula: ");
-    scanf("%d", &inputMatricula);
+    //printf("Informe o numero da matricula: ");
+    //scanf("%d", &inputMatricula);
 
     //posicao = buscaExponencial(alunos, 4, inputMatricula);
-    posicao = buscaExponencialNome(alunos, 4, "Heitor");
+    posicao = buscaExponencialNome(alunos, 4, "heitor");
 
     if (posicao == -1)
     {
@@ -39,7 +39,7 @@ int main(void)
     }
     else
     {
-        exibeAluno(alunos, posicao);
+        printf("%d", posicao);
     }
 
     libera(alunos);
