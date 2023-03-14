@@ -4,14 +4,13 @@
 
 #include "aluno.h"
 
-Alunos *alunos[3];
-
 int main(void)
 {
-    char nome[81];
-    int matricula, inputMatricula;
+    int i = 0, matricula, buscaMatricula, posicao = 0, tamanho = 8, op;
+    char nome[81], buscaNome[81];
     float documento;
-    int i = 0, posicao = 0;
+
+    Alunos *alunos[tamanho];
 
     FILE *aAluno = fopen("../alunos/aluno.txt", "r");
     if (aAluno == NULL)
@@ -26,23 +25,36 @@ int main(void)
         alunos[i] = criaAluno(nome, matricula, documento);
         i++;
     }
-    fclose(aAluno);
-    ordenaLista(alunos, 3);
 
-    char nomeProcurado[81];
-    printf("Informe o nome da aluno: ");
-    scanf(" %[^\n]s", nomeProcurado);
+    ordenaLista(alunos, tamanho);
 
-    //posicao = buscaExponencial(alunos, 4, inputMatricula);
-    posicao = buscaExponencialNome(alunos, i, nomeProcurado);
+    printf("Voce deseja buscar o nome (1) ou a matricula (2) do aluno? ");
+    scanf("%d", &op);
 
+    switch (op)
+    {
+    case 1:
+        printf("\nInforme o nome da aluno: ");
+        scanf(" %[^\n]s", buscaNome);
+
+        posicao = buscaExponencialNome(alunos, i, buscaNome);
+        break;
+    case 2:
+        printf("Informe a matricula do aluno: ");
+        scanf("%d", &buscaMatricula);
+
+        posicao = buscaExponencial(alunos, i, buscaMatricula);
+        break;
+    default:
+        break;
+    }
     if (posicao == -1)
     {
         printf("Valor nao encontrado");
     }
     else
     {
-        printf("%d", posicao);
+        exibeAluno(alunos, posicao);
     }
 
     libera(alunos);

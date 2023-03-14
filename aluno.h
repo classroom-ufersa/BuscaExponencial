@@ -2,7 +2,7 @@ typedef struct alunos Alunos;
 
 Alunos *criaAluno(char nome[81], int matricula, float documento);
 
-void ordenaLista(Alunos ** alunos, int tamanho);
+void ordenaLista(Alunos **alunos, int tamanho);
 
 int buscaExponencial(Alunos **alunos, int tamanho, int valor);
 
