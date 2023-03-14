@@ -11,7 +11,7 @@ int main(void)
     char nome[81];
     int matricula, inputMatricula;
     float documento;
-    int i = 0;
+    int i = 0, posicao = 0;
 
     FILE *aAluno = fopen("../alunos/aluno.txt", "r");
     if (aAluno == NULL)
@@ -30,14 +30,16 @@ int main(void)
     printf("Informe o numero da matricula: ");
     scanf("%d", &inputMatricula);
 
-    int posicao = buscaExponencial(alunos, 4, inputMatricula);
+    //posicao = buscaExponencial(alunos, 4, inputMatricula);
+    posicao = buscaExponencialNome(alunos, 4, "Heitor");
+
     if (posicao == -1)
     {
         printf("Valor nao encontrado");
     }
     else
     {
-       exibeAluno(alunos, posicao);
+        exibeAluno(alunos, posicao);
     }
 
     libera(alunos);

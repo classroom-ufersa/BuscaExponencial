@@ -4,6 +4,8 @@ Alunos *criaAluno(char nome[81], int matricula, float documento);
 
 int buscaExponencial(Alunos **alunos, int tamanho, int valor);
 
+int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81]);
+
 void exibeAluno(Alunos **aluno, int posicao);
 
 void libera(Alunos **aluno);
