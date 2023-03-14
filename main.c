@@ -9,7 +9,7 @@ Alunos *alunos[4];
 int main(void)
 {
     char nome[81];
-    int matricula;
+    int matricula, inputMatricula;
     float documento;
     int i = 0;
 
@@ -27,14 +27,17 @@ int main(void)
         i++;
     }
 
-    int posicao = buscaExponencial(alunos, 4, 4);
+    printf("Informe o numero da matricula: ");
+    scanf("%d", &inputMatricula);
+
+    int posicao = buscaExponencial(alunos, 4, inputMatricula);
     if (posicao == -1)
     {
         printf("Valor nao encontrado");
     }
     else
     {
-        printf("Valor encontrado na posicao %d", posicao);
+       exibeAluno(alunos, posicao);
     }
 
     libera(alunos);
