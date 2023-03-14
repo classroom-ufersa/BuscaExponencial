@@ -21,11 +21,43 @@ Alunos *criaAluno(char nome[81], int matricula, float documento)
     return a;
 }
 
+void ordenaLista(Alunos ** alunos, int tamanho){
+    FILE *f = fopen("../alunos/aluno.txt", "w");
+    if(f == NULL){
+        printf("Erro ao abrir arquivo");
+        exit(1);
+    }
+
+    char temp[30], nome[81];
+    int matricula;
+    float documento;
+    for (int i = 0; i < tamanho; i++)
+    {
+        for (int j = 0; j < tamanho - 1 - i; j++)
+        {
+            if (strcmp(alunos[j]->nome, alunos[j + 1]->nome) > 0)
+            {
+                // swap array[j] and array[j+1]
+                strcpy(temp, alunos[j]->nome);
+                strcpy(alunos[j]->nome, alunos[j + 1]->nome);
+                strcpy(alunos[j + 1]->nome, temp);
+            }
+        }
+    }
+    int i = 0;
+    while (i<tamanho)
+    {
+        fprintf(f, "%s %d %.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
+        i++;
+    }
+
+    fclose(f);
+}
+
 int buscaExponencial(Alunos **alunos, int tamanho, int valor)
 { // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
     int i = 1;
-    
-    
+
     while (i < tamanho && alunos[i]->matricula <= valor)
     {           // Encontra o intervalo onde o valor pode estar
         i *= 2; // Dobro do tamanho do intervalo
@@ -43,13 +75,14 @@ int buscaExponencial(Alunos **alunos, int tamanho, int valor)
 
 int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
 { // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
+    
 
-    if(alunos[0]->nome == nome){
+    if (alunos[0]->nome == nome)
+    {
         return 0;
     }
-
     int i = 1;
-    while (i < 6 && strcmp(alunos[i]->nome, nome) <= 0)
+    while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
     {           // Encontra o intervalo onde o valor pode estar
         i *= 2; // Dobro do tamanho do intervalo
     }

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "aluno.h": "c",
+        "string.h": "c"
+    }
+}

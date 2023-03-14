@@ -4,7 +4,7 @@
 
 #include "aluno.h"
 
-Alunos *alunos[4];
+Alunos *alunos[3];
 
 int main(void)
 {
@@ -26,12 +26,15 @@ int main(void)
         alunos[i] = criaAluno(nome, matricula, documento);
         i++;
     }
+    fclose(aAluno);
+    ordenaLista(alunos, 3);
 
-    //printf("Informe o numero da matricula: ");
-    //scanf("%d", &inputMatricula);
+    char nomeProcurado[81];
+    printf("Informe o nome da aluno: ");
+    scanf(" %[^\n]s", nomeProcurado);
 
     //posicao = buscaExponencial(alunos, 4, inputMatricula);
-    posicao = buscaExponencialNome(alunos, 4, "heitor");
+    posicao = buscaExponencialNome(alunos, i, nomeProcurado);
 
     if (posicao == -1)
     {
