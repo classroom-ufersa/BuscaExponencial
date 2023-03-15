@@ -23,7 +23,7 @@ Alunos *criaAluno(char nome[81], int matricula, float documento)
 
 void ordenaLista(Alunos **alunos, int tamanho)
 {
-    char temp[30];
+    char temp[81];
     FILE *f = fopen("../alunos/aluno.txt", "w");
     if (f == NULL)
     {
@@ -57,7 +57,7 @@ int buscaExponencial(Alunos **alunos, int tamanho, int valor)
     int i = 1;
 
     while (i < tamanho && alunos[i]->matricula <= valor)
-    { // Encontra o intervalo onde o valor pode estar
+    {           // Encontra o intervalo onde o valor pode estar
         i *= 2; // Dobro do tamanho do intervalo
     }
     int j;
@@ -95,7 +95,7 @@ int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
 
 void exibeAluno(Alunos **aluno, int posicao)
 {
-    printf("Nome do aluno: %s\nMatricula: %d\nDocumento: %.0f", aluno[posicao]->nome, aluno[posicao]->matricula, aluno[posicao]->documento);
+    printf("Nome do aluno: %s || Matricula: %d || Documento: %.0f\n", aluno[posicao]->nome, aluno[posicao]->matricula, aluno[posicao]->documento);
 }
 
 void libera(Alunos **aluno)

@@ -26,36 +26,44 @@ int main(void)
         i++;
     }
 
-    ordenaLista(alunos, tamanho);
-
-    printf("Voce deseja buscar o nome (1) ou a matricula (2) do aluno? ");
-    scanf("%d", &op);
-
-    switch (op)
+    do
     {
-    case 1:
-        printf("\nInforme o nome da aluno: ");
-        scanf(" %[^\n]s", buscaNome);
+        printf("1 - Buscar aluno por nome\n2 - Buscar aluno por matricula\n3 - exibir alunos\n4 - Sair.\n");
+        scanf("%d", &op);
+        switch (op)
+        {
+        case 1:
+            printf("\nInforme o nome da aluno: ");
+            scanf(" %[^\n]s", buscaNome);
+            ordenaLista(alunos, tamanho);
+            posicao = buscaExponencialNome(alunos, i, buscaNome);
+            posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao);
+            break;
+        case 2:
+            printf("Informe a matricula do aluno: ");
+            scanf("%d", &buscaMatricula);
 
-        posicao = buscaExponencialNome(alunos, i, buscaNome);
-        break;
-    case 2:
-        printf("Informe a matricula do aluno: ");
-        scanf("%d", &buscaMatricula);
-
-        posicao = buscaExponencial(alunos, i, buscaMatricula);
-        break;
-    default:
-        break;
-    }
-    if (posicao == -1)
-    {
-        printf("Valor nao encontrado");
-    }
-    else
-    {
-        exibeAluno(alunos, posicao);
-    }
+            posicao = buscaExponencial(alunos, i, buscaMatricula);
+            posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao);
+            break;
+        case 3:
+            printf("Exibindo alunos...\n");
+            int n;
+            ordenaLista(alunos, tamanho);
+            for (n = 0; n < tamanho; n++)
+            {
+                exibeAluno(alunos, n);
+            }
+            break;
+        case 4:
+            printf("Saindo do programa...\n");
+            exit(1);
+            break;
+        default:
+            printf("Opcao invalida!\n");
+            break;
+        }
+    } while (op != 854158);
 
     libera(alunos);
     fclose(aAluno);
