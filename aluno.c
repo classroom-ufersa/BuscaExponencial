@@ -52,38 +52,26 @@ void excluirAluno(Alunos **alunos, int posicao)
 
 void ordenaListaNome(Alunos **alunos, int tamanho)
 {
-    char temp[81];
-    int i, j, matriculaT1, matriculaT2;
-    float documentoT1, documentoT2;
     FILE *f = fopen("../alunos/aluno.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
         exit(1);
     }
-    for (i = 0; i < tamanho; i++)
+    Alunos *temp = (Alunos *)malloc(sizeof(Alunos));
+    for (int i = 0; i < tamanho; i++)
     {
-        for (j = 0; j < tamanho - 1 - i; j++)
+        for (int j = 0; j < tamanho - 1 - i; j++)
         {
             if (strcmp(alunos[j]->nome, alunos[j + 1]->nome) > 0)
             {
-                matriculaT1 = alunos[j]->matricula;
-                documentoT1 = alunos[j]->documento;
-                matriculaT2 = alunos[j + 1]->matricula;
-                documentoT2 = alunos[j + 1]->documento;
-
-                strcpy(temp, alunos[j]->nome);
-                strcpy(alunos[j]->nome, alunos[j + 1]->nome);
-                strcpy(alunos[j + 1]->nome, temp);
-
-                alunos[j]->documento = documentoT2;
-                alunos[j]->matricula = matriculaT2;
-                alunos[j + 1]->matricula = matriculaT1;
-                alunos[j + 1]->documento = documentoT1;
+                temp = alunos[j];
+                alunos[j] = alunos[j + 1];
+                alunos[j + 1] = temp;
             }
         }
     }
-    i = 0;
+    int i = 0;
     while (i < tamanho)
     {
         fprintf(f, "%s %d %.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
@@ -95,35 +83,23 @@ void ordenaListaNome(Alunos **alunos, int tamanho)
 
 void ordenaListaMatricula(Alunos **alunos, int tamanho)
 {
-    char temp[81];
-    int i, j, matriculaT1, matriculaT2;
-    float documentoT1, documentoT2;
+    int i, j;
     FILE *f = fopen("../alunos/aluno.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
         exit(1);
     }
-
+    Alunos *temp = (Alunos *)malloc(sizeof(Alunos));
     for (i = 0; i < tamanho; i++)
     {
         for (j = 0; j < tamanho - 1 - i; j++)
         {
             if (alunos[j]->matricula > alunos[j + 1]->matricula)
             {
-                matriculaT1 = alunos[j]->matricula;
-                documentoT1 = alunos[j]->documento;
-                matriculaT2 = alunos[j + 1]->matricula;
-                documentoT2 = alunos[j + 1]->documento;
-
-                strcpy(temp, alunos[j]->nome);
-                strcpy(alunos[j]->nome, alunos[j + 1]->nome);
-                strcpy(alunos[j + 1]->nome, temp);
-
-                alunos[j]->documento = documentoT2;
-                alunos[j]->matricula = matriculaT2;
-                alunos[j + 1]->matricula = matriculaT1;
-                alunos[j + 1]->documento = documentoT1;
+                temp = alunos[j];
+                alunos[j] = alunos[j + 1];
+                alunos[j + 1] = temp;
             }
         }
     }
@@ -156,27 +132,26 @@ int buscaExponencial(Alunos **alunos, int tamanho, int valor)
     return -1;
 }
 
-// Função toda bugada
 int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
-{ // Busca exponencial porque o tamanho do intervalo é dobrado a cada iteração
+{
     if (alunos[0]->nome == nome)
     {
         return 0;
     }
     int i = 1;
     while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
-    {           // Encontra o intervalo onde o valor pode estar
-        i *= 2; // Dobro do tamanho do intervalo
+    {
+        i *= 2;
     }
     int j;
     for (j = i / 2; j < i; j++)
-    { // Busca linear no intervalo
+    {
         if ((strcmp(alunos[j]->nome, nome) == 0))
-        { // Se o valor for encontrado, retorna a posição
+        {
             return j;
         }
     }
-    return -1; // Se o valor não for encontrado, retorna -1
+    return -1;
 }
 
 void exibeAluno(Alunos **aluno, int posicao)

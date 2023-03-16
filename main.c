@@ -39,8 +39,8 @@ int main(void)
         case 2:
             printf("\nInforme o nome da aluno: ");
             scanf(" %[^\n]s", buscaNome);
-            ordenaListaNome(alunos, MAX_ALUNOS);
-            posicao = buscaExponencialNome(alunos, MAX_ALUNOS, buscaNome);
+            ordenaListaNome(alunos, i);
+            posicao = buscaExponencialNome(alunos, i, buscaNome);
             posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao);
             break;
         case 3:
