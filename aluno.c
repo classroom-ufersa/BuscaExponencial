@@ -45,11 +45,6 @@ void escreveAluno()
     fclose(f);
 }
 
-void excluirAluno(Alunos **alunos, int posicao)
-{
-    alunos[posicao] = NULL;
-}
-
 void ordenaListaNome(Alunos **alunos, int tamanho)
 {
     int i, j;
@@ -164,7 +159,12 @@ int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
 
 void exibeAluno(Alunos **aluno, int posicao)
 {
-    printf("Nome do aluno: %s || Matricula: %d || Documento: %.0f\n", aluno[posicao]->nome, aluno[posicao]->matricula, aluno[posicao]->documento);
+    if(aluno[0]->nome == ""){
+        printf("Nao ha alunos cadastrados.");
+    }
+    else{
+        printf("Nome do aluno: %s || Matricula: %d || Documento: %.0f\n", aluno[posicao]->nome, aluno[posicao]->matricula, aluno[posicao]->documento);
+    }
 }
 
 void libera(Alunos **aluno, int tamanho)

@@ -4,8 +4,6 @@ Alunos *capturaAluno(char nome[81], int matricula, float documento);
 
 void escreveAluno();
 
-void excluirAluno(Alunos **alunos, int posicao);
-
 void ordenaListaNome(Alunos **alunos, int tamanho);
 
 void ordenaListaMatricula(Alunos **alunos, int tamanho);
