@@ -27,18 +27,18 @@ void escreveAluno()
     int matricula;
     float documento;
 
-    FILE *f = fopen("../alunos/aluno.txt", "a");
+    FILE *f = fopen("../alunos/alunos.txt", "a");
     if (f == NULL)
     {
         printf("Não foi possivel criar o aluno!\n");
         exit(1);
     }
 
-    printf("Digite o nome do aluno:\n");
+    printf("Digite o nome do aluno: ");
     scanf(" %[^\n]s", nome);
-    printf("Digite a matricula do aluno:\n");
+    printf("Digite a matricula do aluno: ");
     scanf("%d", &matricula);
-    printf("Digite o documento do aluno:\n");
+    printf("Digite o documento do aluno: ");
     scanf("%f", &documento);
 
     fprintf(f, "%s %d %.0f\n", nome, matricula, documento);
@@ -48,7 +48,7 @@ void escreveAluno()
 void ordenaListaNome(Alunos **alunos, int tamanho)
 {
     int i, j;
-    FILE *f = fopen("../alunos/aluno.txt", "w");
+    FILE *f = fopen("../alunos/alunos.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
@@ -87,7 +87,7 @@ void ordenaListaNome(Alunos **alunos, int tamanho)
 void ordenaListaMatricula(Alunos **alunos, int tamanho)
 {
     int i, j;
-    FILE *f = fopen("../alunos/aluno.txt", "w");
+    FILE *f = fopen("../alunos/alunos.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
@@ -159,10 +159,12 @@ int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
 
 void exibeAluno(Alunos **aluno, int posicao)
 {
-    if(aluno[0]->nome == ""){
+    if (aluno[0]->nome == "")
+    {
         printf("Nao ha alunos cadastrados.");
     }
-    else{
+    else
+    {
         printf("Nome do aluno: %s || Matricula: %d || Documento: %.0f\n", aluno[posicao]->nome, aluno[posicao]->matricula, aluno[posicao]->documento);
     }
 }
