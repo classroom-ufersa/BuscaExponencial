@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "aluno.h"
+#define MAX_ALUNOS 30 // quantidade de alunos possiveis de serem cadastrados
 
 int main(void)
 {
-    int i = 0, matricula, buscaMatricula, posicao = 0, tamanho = 8, op;
+    int index = 0, matricula, buscaMatricula, posicao = 0, op;
     char nome[81], buscaNome[81];
     float documento;
 
-    Alunos *alunos[tamanho];
+    Alunos *alunos[MAX_ALUNOS];
 
     FILE *aAluno = fopen("../alunos/aluno.txt", "r");
     if (aAluno == NULL)
@@ -19,54 +19,70 @@ int main(void)
         return 1;
     }
 
-    while (!(feof(aAluno)))
+    while (!(feof(aAluno))) // capturando todos os alunos escritos no arquivo
     {
         fscanf(aAluno, "%s %d %f", nome, &matricula, &documento);
-        alunos[i] = criaAluno(nome, matricula, documento);
-        i++;
+        alunos[index] = capturaAluno(nome, matricula, documento);
+        index++;
     }
-
+    index -= 1;
     do
     {
-        printf("1 - Buscar aluno por nome\n2 - Buscar aluno por matricula\n3 - exibir alunos\n4 - Sair.\n");
+        printf("1 - Escrever Aluno.\n2 - Buscar Aluno por Nome.\n3 - Buscar Aluno por Matricula.\n4 - Exibir Alunos.\n5 - Sair.\n");
         scanf("%d", &op);
         switch (op)
         {
         case 1:
-            printf("\nInforme o nome da aluno: ");
-            scanf(" %[^\n]s", buscaNome);
-            ordenaLista(alunos, tamanho);
-            posicao = buscaExponencialNome(alunos, i, buscaNome);
-            posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao);
+            printf("Escrevendo um aluno...\n");
+            escreveAluno(); // pede as informaçoes do aluno e escreve no arquivo
+            FILE *aAluno = fopen("../alunos/aluno.txt", "r");
+            if (aAluno == NULL)
+            {
+                printf("Erro ao ler o arquivo!\n");
+                return 1;
+            }
+
+            index = 0;
+            while (!(feof(aAluno))) // capturando todos os alunos escritos no arquivo
+            {
+                fscanf(aAluno, "%s %d %f", nome, &matricula, &documento);
+                alunos[index] = capturaAluno(nome, matricula, documento);
+                index++;
+            }
+            index -= 1;
             break;
         case 2:
-            printf("Informe a matricula do aluno: ");
-            scanf("%d", &buscaMatricula);
-
-            posicao = buscaExponencial(alunos, i, buscaMatricula);
-            posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao);
+            printf("\nInforme o nome da aluno: ");
+            scanf(" %[^\n]s", buscaNome); // nome do aluno a ser buscado
+            ordenaListaNome(alunos, index); // ordena a lista por nome
+            posicao = buscaExponencialNome(alunos, index, buscaNome); // faz a busca exponencial por string
+            posicao == -1 ? printf("Valor nao encontrado") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
         case 3:
-            printf("Exibindo alunos...\n");
-            int n;
-            ordenaLista(alunos, tamanho);
-            for (n = 0; n < tamanho; n++)
-            {
-                exibeAluno(alunos, n);
-            }
+            printf("Informe a matricula do aluno: ");
+            scanf("%d", &buscaMatricula); // matricula do aluno a ser buscado
+            ordenaListaMatricula(alunos, index); // ordena a lista por matricula
+            posicao = buscaExponencial(alunos, index, buscaMatricula); // faz a busca exponencial por matricula
+            posicao == -1 ? "Valor nao encontrado" : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
         case 4:
+            printf("Exibindo alunos...\n"); 
+            int n;
+            ordenaListaNome(alunos, index); // ordena alunos por ordem alfabetica antes de exibir
+            for (n = 0; n < index; n++)
+            {
+                // fazer verificacao caso nao tenha alunos
+                exibeAluno(alunos, n); // exibe alunos
+            }
+            break;
+        case 5:
             printf("Saindo do programa...\n");
             exit(1);
             break;
-        default:
-            printf("Opcao invalida!\n");
-            break;
         }
-    } while (op != 854158);
+    } while (op != 5);
 
-    libera(alunos);
-    fclose(aAluno);
-
+    libera(alunos, index); // libera o espaco alocado para alunos
+    fclose(aAluno); // fecha o arquivo
     return 0;
 }
