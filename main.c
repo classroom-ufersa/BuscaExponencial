@@ -26,6 +26,8 @@ int main(void)
         i++;
     }
 
+    i -= 1;
+
     do
     {
         printf("1 - Escrever Aluno.\n2 - Buscar Aluno por Nome.\n3 - Buscar Aluno por Matricula.\n4 - Exibir Alunos.\n5 - Sair.\n");

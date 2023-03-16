@@ -52,16 +52,24 @@ void excluirAluno(Alunos **alunos, int posicao)
 
 void ordenaListaNome(Alunos **alunos, int tamanho)
 {
+    int i, j;
     FILE *f = fopen("../alunos/aluno.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
         exit(1);
     }
+
     Alunos *temp = (Alunos *)malloc(sizeof(Alunos));
-    for (int i = 0; i < tamanho; i++)
+    if (temp == NULL)
     {
-        for (int j = 0; j < tamanho - 1 - i; j++)
+        printf("Erro na alocação de memoria da variavel temp!\n");
+        exit(1);
+    }
+
+    for (i = 0; i < tamanho; i++)
+    {
+        for (j = 0; j < tamanho - 1 - i; j++)
         {
             if (strcmp(alunos[j]->nome, alunos[j + 1]->nome) > 0)
             {
@@ -71,7 +79,7 @@ void ordenaListaNome(Alunos **alunos, int tamanho)
             }
         }
     }
-    int i = 0;
+    i = 0;
     while (i < tamanho)
     {
         fprintf(f, "%s %d %.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
