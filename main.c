@@ -30,7 +30,7 @@ int main(void)
             index = 0;
             while (!(feof(aAluno))) // capturando todos os alunos escritos no arquivo
             {
-                fscanf(aAluno, " %[^\n]s %d %f", nome, &matricula, &documento);
+                fscanf(aAluno, " %[^\t]\t%d\t%f", nome, &matricula, &documento);
                 alunos[index] = capturaAluno(nome, matricula, documento);
                 index++;
             }

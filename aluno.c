@@ -41,7 +41,7 @@ void escreveAluno()
     printf("Digite o documento do aluno: ");
     scanf("%f", &documento);
 
-    fprintf(f, "%s %d %.0f\n", nome, matricula, documento);
+    fprintf(f, "%s\t%d\t%.0f\n", nome, matricula, documento);
     fclose(f);
 }
 
@@ -77,7 +77,7 @@ void ordenaListaNome(Alunos **alunos, int tamanho)
     i = 0;
     while (i < tamanho)
     {
-        fprintf(f, "%s %d %.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
+        fprintf(f, "%s\t%d\t%.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
         i++;
     }
 
@@ -109,7 +109,7 @@ void ordenaListaMatricula(Alunos **alunos, int tamanho)
     i = 0;
     while (i < tamanho)
     {
-        fprintf(f, "%s %d %.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
+        fprintf(f, "%s\t%d\t%.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
         i++;
     }
 
