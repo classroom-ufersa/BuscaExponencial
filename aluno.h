@@ -4,9 +4,7 @@ Alunos *capturaAluno(char nome[81], int matricula, float documento);
 
 void escreveAluno();
 
-void ordenaListaNome(Alunos **alunos, int tamanho);
-
-void ordenaListaMatricula(Alunos **alunos, int tamanho);
+void ordenaLista(Alunos **alunos, int tamanho, int opcao);
 
 int buscaExponencial(Alunos **alunos, int tamanho, int valor);
 

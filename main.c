@@ -11,6 +11,7 @@ int main(void)
     int index = 0, matricula, buscaMatricula, posicao = 0, op;
     char nome[81], buscaNome[81];
     float documento;
+    int porNome = 1, porMatricula = 0;
 
     Alunos *alunos[MAX_ALUNOS];
 
@@ -41,7 +42,7 @@ int main(void)
             printf("\nBuscando por um aluno...\n");
             printf("Digite o nome da aluno: ");
             scanf(" %[^\n]s", buscaNome);                                                   // nome do aluno a ser buscado
-            ordenaListaNome(alunos, index);                                                 // ordena a lista por nome
+            ordenaLista(alunos, index, porNome);                                                 // ordena a lista por nome
             posicao = buscaExponencialNome(alunos, index, buscaNome);                       // faz a busca exponencial por string
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
@@ -49,14 +50,14 @@ int main(void)
             printf("\nBuscando por um aluno...\n");
             printf("Digite a matricula do aluno: ");
             scanf("%d", &buscaMatricula);                                                   // matricula do aluno a ser buscado
-            ordenaListaMatricula(alunos, index);                                            // ordena a lista por matricula
+            ordenaLista(alunos, index, porMatricula);                                            // ordena a lista por matricula
             posicao = buscaExponencial(alunos, index, buscaMatricula);                      // faz a busca exponencial por matricula
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
         case 4:
             printf("\nExibindo alunos...\n");
             int n;
-            ordenaListaNome(alunos, index); // ordena alunos por ordem alfabetica antes de exibir
+            ordenaLista(alunos, index, porNome); // ordena alunos por ordem alfabetica antes de exibir
             for (n = 0; n < index; n++)
             {
                 // fazer verificacao caso nao tenha alunos
