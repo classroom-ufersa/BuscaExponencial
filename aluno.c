@@ -116,45 +116,46 @@ void ordenaListaMatricula(Alunos **alunos, int tamanho)
     fclose(f);
 }
 
-int buscaExponencial(Alunos **alunos, int tamanho, int valor)
+int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int opcao)
 {
     int i = 1;
-
-    while (i < tamanho && alunos[i]->matricula <= valor)
+    if (opcao == 2)
     {
-        i *= 2;
-    }
-    int j;
-    for (j = i / 2; j < i; j++)
-    {
-        if (alunos[j]->matricula == valor)
+        if (alunos[0]->nome == nome)
         {
-            return j;
+            return 0;
         }
-    }
-    return -1;
-}
-
-int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81])
-{
-    if (alunos[0]->nome == nome)
-    {
-        return 0;
-    }
-    int i = 1;
-    while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
-    {
-        i *= 2;
-    }
-    int j;
-    for (j = i / 2; j < i; j++)
-    {
-        if ((strcmp(alunos[j]->nome, nome) == 0))
+        while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
         {
-            return j;
+            i *= 2;
         }
+        int j;
+        for (j = i / 2; j < i; j++)
+        {
+            if ((strcmp(alunos[j]->nome, nome) == 0))
+            {
+                return j;
+            }
+        }
+        return -1;
     }
-    return -1;
+    else if (opcao == 3)
+    {
+        i = 1;
+        while (i < tamanho && alunos[i]->matricula <= mat)
+        {
+            i *= 2;
+        }
+        int j;
+        for (j = i / 2; j < i; j++)
+        {
+            if (alunos[j]->matricula == mat)
+            {
+                return j;
+            }
+        }
+        return -1;
+    }
 }
 
 void exibeAluno(Alunos **aluno, int posicao)

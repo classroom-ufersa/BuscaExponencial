@@ -8,9 +8,7 @@ void ordenaListaNome(Alunos **alunos, int tamanho);
 
 void ordenaListaMatricula(Alunos **alunos, int tamanho);
 
-int buscaExponencial(Alunos **alunos, int tamanho, int valor);
-
-int buscaExponencialNome(Alunos **alunos, int tamanho, char nome[81]);
+int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int opcao);
 
 void exibeAluno(Alunos **aluno, int posicao);
 
