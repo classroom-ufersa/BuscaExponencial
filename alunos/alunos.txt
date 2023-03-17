@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 Maria Das Neves	4	23
 Lucas	5	69
 Ramon	6	12
 Renan Pedro	24	56
+=======
+>>>>>>> bef48ca1f0e48988265f1a2633a64bdf5e4120d9

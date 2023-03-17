@@ -42,16 +42,26 @@ int main(void)
             printf("\nBuscando por um aluno...\n");
             printf("Digite o nome da aluno: ");
             scanf(" %[^\n]s", buscaNome);                                                   // nome do aluno a ser buscado
+<<<<<<< HEAD
             ordenaLista(alunos, index, porNome);                                                 // ordena a lista por nome
             posicao = buscaExponencialNome(alunos, index, buscaNome);                       // faz a busca exponencial por string
+=======
+            ordenaListaNome(alunos, index);                                                 // ordena a lista por nome
+            posicao = buscaExponencial(alunos, matricula, buscaNome, index, op);            // faz a busca exponencial por string
+>>>>>>> bef48ca1f0e48988265f1a2633a64bdf5e4120d9
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
         case 3:
             printf("\nBuscando por um aluno...\n");
             printf("Digite a matricula do aluno: ");
             scanf("%d", &buscaMatricula);                                                   // matricula do aluno a ser buscado
+<<<<<<< HEAD
             ordenaLista(alunos, index, porMatricula);                                            // ordena a lista por matricula
             posicao = buscaExponencial(alunos, index, buscaMatricula);                      // faz a busca exponencial por matricula
+=======
+            ordenaListaMatricula(alunos, index);                                            // ordena a lista por matricula
+            posicao = buscaExponencial(alunos, buscaMatricula, nome, index, op);            // faz a busca exponencial por matricula
+>>>>>>> bef48ca1f0e48988265f1a2633a64bdf5e4120d9
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
             break;
         case 4:
