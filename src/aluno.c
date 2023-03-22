@@ -27,7 +27,7 @@ void escreveAluno()
     int matricula;
     float documento;
 
-    FILE *f = fopen("../alunos/alunos.txt", "a");
+    FILE *f = fopen("../service/alunos.txt", "a");
     if (f == NULL)
     {
         printf("Não foi possivel criar o aluno!\n");
@@ -48,19 +48,22 @@ void escreveAluno()
 void ordenaLista(Alunos **alunos, int tamanho, int opcao)
 {
     int i, j;
-    FILE *f = fopen("../alunos/alunos.txt", "w");
+
+    FILE *f = fopen("../service/alunos.txt", "w");
     if (f == NULL)
     {
         printf("Erro ao abrir arquivo");
         exit(1);
     }
+
     Alunos *temp = (Alunos *)malloc(sizeof(Alunos));
     if (temp == NULL)
     {
         printf("Erro na alocação de memoria da variavel temp!\n");
         exit(1);
     }
-    if (opcao == 1)
+
+    if (opcao == 2 || opcao == 4)
     {
         for (i = 0; i < tamanho; i++)
         {

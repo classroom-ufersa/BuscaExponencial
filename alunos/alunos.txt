@@ -1,3 +1,0 @@
-Ana Liz	2	123
-Heitor Claudino	1	123
-Lucas	3	321

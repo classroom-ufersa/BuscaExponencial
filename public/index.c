@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "aluno.h"
+#include "../src/aluno.h"
 
 #define MAX_ALUNOS 30 // quantidade de alunos possiveis de serem cadastrados
 
@@ -11,7 +11,6 @@ int main(void)
     int index = 0, matricula, buscaMatricula, posicao = 0, op;
     char nome[81], buscaNome[81];
     float documento;
-    int porNome = 1, porMatricula = 0;
 
     Alunos *alunos[MAX_ALUNOS];
 
@@ -26,10 +25,12 @@ int main(void)
         {
         case 1:
             printf("\nEscrevendo um aluno...\n");
-            escreveAluno(); // pede as informaçoes do aluno e escreve no arquivo
-            aAluno = fopen("../alunos/alunos.txt", "r");
+            // escrevendo um aluno no arquivo
+            escreveAluno();
+            aAluno = fopen("../service/alunos.txt", "r");
             index = 0;
-            while (!(feof(aAluno))) // capturando todos os alunos escritos no arquivo
+            // capturando todos os alunos escritos no arquivo
+            while (!(feof(aAluno)))
             {
                 fscanf(aAluno, " %[^\t]\t%d\t%f", nome, &matricula, &documento);
                 alunos[index] = capturaAluno(nome, matricula, documento);
@@ -41,27 +42,31 @@ int main(void)
         case 2:
             printf("\nBuscando por um aluno...\n");
             printf("Digite o nome da aluno: ");
-            scanf(" %[^\n]s", buscaNome);                                                   // nome do aluno a ser buscado
-            ordenaLista(alunos, index, porNome);                                            // ordena a lista por nome
-            posicao = buscaExponencial(alunos, matricula, buscaNome, index, op);                       // faz a busca exponencial por string
-            posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
+            scanf(" %[^\n]s", buscaNome);
+            // ordenando a lista em ordem alfabética
+            ordenaLista(alunos, index, op);
+            // fazendo a busca exponencial por string
+            posicao = buscaExponencial(alunos, matricula, buscaNome, index, op);
+            posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao);
             break;
         case 3:
             printf("\nBuscando por um aluno...\n");
             printf("Digite a matricula do aluno: ");
-            scanf("%d", &buscaMatricula);                                                   // matricula do aluno a ser buscado
-            ordenaLista(alunos, index, porMatricula);                                       // ordena a lista por matricula
-            posicao = buscaExponencial(alunos, buscaMatricula, nome, index, op);                      // faz a busca exponencial por matricula
-            posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao); // exibe as informaçoes do aluno, caso encontrado
+            scanf("%d", &buscaMatricula);
+            // ordenando a lista pelo número da matrícula (ordem crescente)
+            ordenaLista(alunos, index, op);
+            // fazendo a busca exponencial pelo número da matrículo
+            posicao = buscaExponencial(alunos, buscaMatricula, nome, index, op);            
+            posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao);
             break;
         case 4:
             printf("\nExibindo alunos...\n");
             int n;
-            ordenaLista(alunos, index, porNome); // ordena alunos por ordem alfabetica antes de exibir
+            // ordenando a lista em ordem alfabética
+            ordenaLista(alunos, index, op);
             for (n = 0; n < index; n++)
             {
-                // fazer verificacao caso nao tenha alunos
-                exibeAluno(alunos, n); // exibe alunos
+                exibeAluno(alunos, n);
             }
             break;
         case 5:
@@ -71,6 +76,6 @@ int main(void)
         }
     } while (op != 5);
 
-    libera(alunos, index); // libera o espaco alocado para alunos
+    libera(alunos, index);
     return 0;
 }
