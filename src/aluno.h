@@ -4,11 +4,17 @@ Alunos *capturaAluno(char nome[81], int matricula, float documento);
 
 void escreveAluno();
 
-void ordenaLista(Alunos **alunos, int tamanho, int opcao);
+void ordenaListaNome(Alunos **alunos, int tamanho);
 
-int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int opcao);
+void ordenaListaMatricula(Alunos **alunos, int tamanho);
 
-int buscaBinaria(Alunos **alunos, int index, int posicao, int mat, char nome[81], int opcao);
+int buscaExponencialNome(Alunos **alunos, char nome[81], int tamanho);
+
+int buscaExponencialMatricula(Alunos **alunos, int mat, int tamanho);
+
+int buscaBinariaNome(Alunos **alunos, int index, int posicao, char nome[81]);
+
+int buscaBinariaMatricula(Alunos **alunos, int index, int posicao, int mat);
 
 void exibeAluno(Alunos **aluno, int posicao);
 
