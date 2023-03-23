@@ -46,7 +46,7 @@ void escreveAluno()
     fclose(f);
 }
 
-void ordenaLista(Alunos **alunos, int tamanho, int opcao)
+void ordenaListaNome(Alunos **alunos, int tamanho)
 {
     int i, j;
 
@@ -63,34 +63,15 @@ void ordenaLista(Alunos **alunos, int tamanho, int opcao)
         printf("Erro na alocação de memoria da variavel temp!\n");
         exit(1);
     }
-
-    if (opcao == 2 || opcao == 4)
+    for (i = 0; i < tamanho; i++)
     {
-        for (i = 0; i < tamanho; i++)
+        for (j = 0; j < tamanho - 1 - i; j++)
         {
-            for (j = 0; j < tamanho - 1 - i; j++)
+            if (strcmp(alunos[j]->nome, alunos[j + 1]->nome) > 0)
             {
-                if (strcmp(alunos[j]->nome, alunos[j + 1]->nome) > 0)
-                {
-                    temp = alunos[j];
-                    alunos[j] = alunos[j + 1];
-                    alunos[j + 1] = temp;
-                }
-            }
-        }
-    }
-    else
-    {
-        for (i = 0; i < tamanho; i++)
-        {
-            for (j = 0; j < tamanho - 1 - i; j++)
-            {
-                if (alunos[j]->matricula > alunos[j + 1]->matricula)
-                {
-                    temp = alunos[j];
-                    alunos[j] = alunos[j + 1];
-                    alunos[j + 1] = temp;
-                }
+                temp = alunos[j];
+                alunos[j] = alunos[j + 1];
+                alunos[j + 1] = temp;
             }
         }
     }
@@ -105,75 +86,117 @@ void ordenaLista(Alunos **alunos, int tamanho, int opcao)
     fclose(f);
 }
 
-int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int opcao)
+void ordenaListaMatricula(Alunos **alunos, int tamanho)
 {
-    int i = 1;
-    if (opcao == 2)
+
+    int i, j;
+
+    FILE *f = fopen("../service/alunos.txt", "w");
+    if (f == NULL)
     {
-        if (strcmp(alunos[0]->nome, nome) == 0)
-        {
-            return 0;
-        }
-        while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0) // n
-        {
-            i *= 2;
-        }
-        return buscaBinaria(alunos, i / 2, fmin(i, tamanho - 1), mat, nome, opcao);
+        printf("Erro ao abrir arquivo");
+        exit(1);
     }
-    else if (opcao == 3)
+
+    Alunos *temp = (Alunos *)malloc(sizeof(Alunos));
+    if (temp == NULL)
     {
-        i = 1;
-        while (i < tamanho && alunos[i]->matricula <= mat)
-        {
-            i *= 2;
-        }
-        return buscaBinaria(alunos, i / 2, fmin(i, tamanho - 1), mat, nome, opcao);
+        printf("Erro na alocação de memoria da variavel temp!\n");
+        exit(1);
     }
+
+    for (i = 0; i < tamanho; i++)
+    {
+        for (j = 0; j < tamanho - 1 - i; j++)
+        {
+            if (alunos[j]->matricula > alunos[j + 1]->matricula)
+            {
+                temp = alunos[j];
+                alunos[j] = alunos[j + 1];
+                alunos[j + 1] = temp;
+            }
+        }
+    }
+
+    i = 0;
+    while (i < tamanho)
+    {
+        fprintf(f, "%s\t%d\t%.0f\n", alunos[i]->nome, alunos[i]->matricula, alunos[i]->documento);
+        i++;
+    }
+
+    fclose(f);
 }
 
-int buscaBinaria(Alunos **alunos, int inicio, int fim, int mat, char nome[81], int opcao)
+int buscaExponencialNome(Alunos **alunos, char nome[81], int tamanho)
 {
-    if (opcao == 2)
+    int i = 1;
+
+    if (strcmp(alunos[0]->nome, nome) == 0)
     {
-        if (fim >= inicio)
-        {
-            int mid = inicio + (fim - inicio) / 2;
-
-            if (strcmp(alunos[mid]->nome, nome) == 0)
-            {
-                return mid;
-            }
-            if (strcmp(alunos[mid]->nome, nome) > 0)
-            {
-                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
-            }
-
-            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
-        }
-        
-        return -1;
+        return 0;
     }
-    else if (opcao == 3)
+    while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0) // n
     {
-        if (fim >= inicio)
+        i *= 2;
+    }
+    return buscaBinariaNome(alunos, i / 2, fmin(i, tamanho - 1), nome);
+}
+
+int buscaExponencialMatricula(Alunos **alunos, int mat, int tamanho)
+{
+    if (alunos[0]->matricula == mat)
+    {
+        return 0;
+    }
+
+    int i = 1;
+    while (i < tamanho && alunos[i]->matricula <= mat)
+    {
+        i *= 2;
+    }
+    return buscaBinariaMatricula(alunos, i / 2, fmin(i, tamanho - 1), mat);
+}
+
+int buscaBinariaNome(Alunos **alunos, int inicio, int fim, char nome[81])
+{
+    if (fim >= inicio)
+    {
+        int mid = inicio + (fim - inicio) / 2;
+
+        if (strcmp(alunos[mid]->nome, nome) == 0)
         {
-            int mid = inicio + (fim - inicio) / 2;
-
-            if (alunos[mid]->matricula == mat)
-            {
-                return mid;
-            }
-
-            if (alunos[mid]->matricula > mat)
-            {
-                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
-            }
-
-            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
+            return mid;
+        }
+        if (strcmp(alunos[mid]->nome, nome) > 0)
+        {
+            return buscaBinariaNome(alunos, inicio, mid - 1, nome);
         }
 
-        return -1;
+        return buscaBinariaNome(alunos, mid + 1, fim, nome);
     }
+    return -1;
+};
+
+int buscaBinariaMatricula(Alunos **alunos, int inicio, int fim, int mat)
+{
+
+    if (fim >= inicio)
+    {
+        int mid = inicio + (fim - inicio) / 2;
+
+        if (alunos[mid]->matricula == mat)
+        {
+            return mid;
+        }
+        if (alunos[mid]->matricula > mat)
+        {
+            return buscaBinariaMatricula(alunos, inicio, mid - 1, mat);
+        }
+
+        return buscaBinariaMatricula(alunos, mid + 1, fim, mat);
+    }
+    return -1;
 };
 
 void exibeAluno(Alunos **aluno, int posicao)
