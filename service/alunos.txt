@@ -1,4 +1,4 @@
-Heitor	1	123
-Lucas	2	123
-Hector	3	123
-Murilo	4	123
+Jose	3	457
+Lucas	4	56
+Murilo	5	563
+Heitor	7	5632
