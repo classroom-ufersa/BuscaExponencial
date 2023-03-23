@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
 
 #include "aluno.h"
@@ -135,33 +134,17 @@ int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int o
         {
             i *= 2;
         }
-
-        return buscaBinaria(alunos, i/2, fmin(i, tamanho-1), mat);
+        int j;
+        for (j = i / 2; j < i; j++)
+        {
+            if (alunos[j]->matricula == mat)
+            {
+                return j;
+            }
+        }
+        return -1;
     }
 }
-
-int buscaBinaria(Alunos **alunos, int index, int posicao, int mat)
-{
-    if (posicao >= index)
-    {
-        int mid = index + (posicao - index) / 2;
-
-        if (alunos[mid]->matricula == mat)
-        {
-            return mid;
-        }
-
-        if (alunos[mid]->matricula > mat)
-        {
-            return buscaBinaria(alunos, index, mid-1, mat);
-        }
-
-        return buscaBinaria(alunos, mid+1, posicao, mat);
-
-    }
-    
-    return -1;
-};
 
 void exibeAluno(Alunos **aluno, int posicao)
 {
