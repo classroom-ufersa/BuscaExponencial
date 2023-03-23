@@ -1,4 +1,4 @@
-Hector	4	123456792
-Heitor	3	123456792
-Lucas	1	123456792
-Murilo	2	123456792
+Heitor	1	123
+Lucas	2	123
+Hector	3	123
+Murilo	4	123

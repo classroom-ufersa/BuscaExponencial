@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 
 #include "aluno.h"
@@ -109,23 +110,15 @@ int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int o
     int i = 1;
     if (opcao == 2)
     {
-        if (alunos[0]->nome == nome)
+        if (strcmp(alunos[0]->nome, nome) == 0)
         {
             return 0;
         }
-        while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
+        while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0) // n
         {
             i *= 2;
         }
-        int j;
-        for (j = i / 2; j < i; j++)
-        {
-            if ((strcmp(alunos[j]->nome, nome) == 0))
-            {
-                return j;
-            }
-        }
-        return -1;
+        return buscaBinaria(alunos, i / 2, fmin(i, tamanho - 1), mat, nome, opcao);
     }
     else if (opcao == 3)
     {
@@ -134,17 +127,54 @@ int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int o
         {
             i *= 2;
         }
-        int j;
-        for (j = i / 2; j < i; j++)
-        {
-            if (alunos[j]->matricula == mat)
-            {
-                return j;
-            }
-        }
-        return -1;
+        return buscaBinaria(alunos, i / 2, fmin(i, tamanho - 1), mat, nome, opcao);
     }
 }
+
+int buscaBinaria(Alunos **alunos, int inicio, int fim, int mat, char nome[81], int opcao)
+{
+    if (opcao == 2)
+    {
+        if (fim >= inicio)
+        {
+            int mid = inicio + (fim - inicio) / 2;
+
+            if (strcmp(alunos[mid]->nome, nome) == 0)
+            {
+                return mid;
+            }
+            if (strcmp(alunos[mid]->nome, nome) > 0)
+            {
+                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
+            }
+
+            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
+        }
+        
+        return -1;
+    }
+    else if (opcao == 3)
+    {
+        if (fim >= inicio)
+        {
+            int mid = inicio + (fim - inicio) / 2;
+
+            if (alunos[mid]->matricula == mat)
+            {
+                return mid;
+            }
+
+            if (alunos[mid]->matricula > mat)
+            {
+                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
+            }
+
+            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
+        }
+
+        return -1;
+    }
+};
 
 void exibeAluno(Alunos **aluno, int posicao)
 {

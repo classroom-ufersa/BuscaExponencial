@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 
 #include "../src/aluno.h"
@@ -56,7 +57,7 @@ int main(void)
             // ordenando a lista pelo número da matrícula (ordem crescente)
             ordenaLista(alunos, index, op);
             // fazendo a busca exponencial pelo número da matrículo
-            posicao = buscaExponencial(alunos, buscaMatricula, nome, index, op);            
+            posicao = buscaExponencial(alunos, buscaMatricula, nome, index, op);
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao);
             break;
         case 4:
