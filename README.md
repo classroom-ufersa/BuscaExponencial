@@ -51,3 +51,11 @@ int i = 1;
         return buscaBinariaNome(alunos, i / 2, fmin(i, tamanho - 1), nome); // chama a busca binária para encontrar o nome
     }
 ```
+
+## Explicação do funcionamento da Busca Binária
+A busca binária é outro grupo
+
+```c
+int buscaBinariaNome(Alunos **alunos, int index, int posicao, char nome[81]);
+int buscaBinariaMatricula(Alunos **alunos, int index, int posicao, int mat);
+```
