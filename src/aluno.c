@@ -131,13 +131,13 @@ int buscaExponencial(Alunos **alunos, int mat, char nome[81], int tamanho, int o
     }
 }
 
-int buscaBinaria(Alunos **alunos, int start, int end, int mat, char nome[81], int opcao)
+int buscaBinaria(Alunos **alunos, int inicio, int fim, int mat, char nome[81], int opcao)
 {
     if (opcao == 2)
     {
-        if (end >= 1)
+        if (fim >= inicio)
         {
-            int mid = start + (end - start) % 2;
+            int mid = inicio + (fim - inicio) / 2;
 
             if (strcmp(alunos[mid]->nome, nome) == 0)
             {
@@ -145,17 +145,19 @@ int buscaBinaria(Alunos **alunos, int start, int end, int mat, char nome[81], in
             }
             if (strcmp(alunos[mid]->nome, nome) > 0)
             {
-                return buscaBinaria(alunos, start, mid - 1, mat, nome, opcao);
+                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
             }
-            return buscaBinaria(alunos, mid + 1, end, mat, nome, opcao);
+
+            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
         }
-        // Falta colocar o caso do return -1
+        
+        return -1;
     }
     else if (opcao == 3)
     {
-        if (end >= 1)
+        if (fim >= inicio)
         {
-            int mid = start + (end - start) % 2;
+            int mid = inicio + (fim - inicio) / 2;
 
             if (alunos[mid]->matricula == mat)
             {
@@ -164,11 +166,13 @@ int buscaBinaria(Alunos **alunos, int start, int end, int mat, char nome[81], in
 
             if (alunos[mid]->matricula > mat)
             {
-                return buscaBinaria(alunos, start, mid - 1, mat, nome, opcao);
+                return buscaBinaria(alunos, inicio, mid - 1, mat, nome, opcao);
             }
-            return buscaBinaria(alunos, mid + 1, end, mat, nome, opcao);
+
+            return buscaBinaria(alunos, mid + 1, fim, mat, nome, opcao);
         }
-        // Falta colocar o caso do return -1
+
+        return -1;
     }
 };
 

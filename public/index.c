@@ -48,7 +48,6 @@ int main(void)
             ordenaLista(alunos, index, op);
             // fazendo a busca exponencial por string
             posicao = buscaExponencial(alunos, matricula, buscaNome, index, op);
-            printf("%d", posicao);
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao);
             break;
         case 3:
