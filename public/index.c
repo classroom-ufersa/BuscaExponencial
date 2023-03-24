@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../src/aluno.h"
+#include "../src/c/aluno.h"
 
 #define MAX_ALUNOS 30 // quantidade de alunos possiveis de serem cadastrados
 
