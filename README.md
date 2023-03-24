@@ -15,8 +15,12 @@ Para isso, basta encontrar a faixa do vetor em que o elemento está presente, e 
 - service
     - alunos.txt
 - src
-    - aluno.c
-    - aluno.h
-
+    - c
+        - aluno.c
+        - aluno.h
+    - css
+        - styles.css
+    - js
+        - index.js
 ## Como executar o código
 Para executar o código é preciso estar no diretório `out` e, no terminal, escrever e executar a linha de comando `./main`.
