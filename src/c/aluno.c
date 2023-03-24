@@ -31,7 +31,7 @@ void escreveAluno()
     FILE *f = fopen("../service/alunos.txt", "a");
     if (f == NULL)
     {
-        printf("Não foi possivel criar o aluno!\n");
+        printf("Nao foi possivel criar o aluno!\n");
         exit(1);
     }
 

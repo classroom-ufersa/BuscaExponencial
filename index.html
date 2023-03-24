@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca Exponencial</title>
+    <link rel="stylesheet" href="/src/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">Busca Exponencial</p>
+      </div>
+    </div>
+
+    <div class="section is-small">
+      <div class="container is-max-desktop">
+        <div
+          class="field has-addons is-align-items-center is-justify-content-center"
+        >
+          <label class="label mr-2">Nome do aluno: </label>
+          <div class="control">
+            <input
+              id="searchField"
+              class="input is-primary"
+              type="text"
+              placeholder="Buscar aluno"
+            />
+          </div>
+
+          <div class="control">
+            <button
+              class="button js-modal-trigger"
+              data-target="modal-js-example"
+            >
+              pesquisar
+            </button>
+          </div>
+        </div>
+
+        <table class="table is-striped mx-auto">
+          <thead>
+            <tr>
+              <th>Nome Completo</th>
+              <th>Matrícula</th>
+              <th>Documento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João da Silva</td>
+              <td>1</td>
+              <td>12345678</td>
+            </tr>
+            <tr>
+              <td>Maria Santos</td>
+              <td>2</td>
+              <td>23456789</td>
+            </tr>
+            <tr>
+              <td>Pedro Oliveira</td>
+              <td>3</td>
+              <td>34567890</td>
+            </tr>
+            <tr>
+              <td>Ana Souza</td>
+              <td>4</td>
+              <td>45678901</td>
+            </tr>
+            <tr>
+              <td>Lucas Pereira</td>
+              <td>5</td>
+              <td>56789012</td>
+            </tr>
+            <tr>
+              <td>Júlia Almeida</td>
+              <td>6</td>
+              <td>67890123</td>
+            </tr>
+            <tr>
+              <td>Rafaela Costa</td>
+              <td>7</td>
+              <td>78901234</td>
+            </tr>
+            <tr>
+              <td>Luiz Ferreira</td>
+              <td>8</td>
+              <td>89012345</td>
+            </tr>
+            <tr>
+              <td>Fernanda Silva</td>
+              <td>9</td>
+              <td>90123456</td>
+            </tr>
+            <tr>
+              <td>André Souza</td>
+              <td>10</td>
+              <td>12345678</td>
+            </tr>
+            <tr>
+              <td>Camila Santos</td>
+              <td>11</td>
+              <td>23456789</td>
+            </tr>
+            <tr>
+              <td>Marcos Oliveira</td>
+              <td>12</td>
+              <td>34567890</td>
+            </tr>
+            <tr>
+              <td>Sofia Almeida</td>
+              <td>13</td>
+              <td>45678901</td>
+            </tr>
+            <tr>
+              <td>Leonardo Pereira</td>
+              <td>14</td>
+              <td>56789012</td>
+            </tr>
+            <tr>
+              <td>Isabella Costa</td>
+              <td>15</td>
+              <td>67890123</td>
+            </tr>
+            <tr>
+              <td>Guilherme Ferreira</td>
+              <td>16</td>
+              <td>78901234</td>
+            </tr>
+            <tr>
+              <td>Larissa Silva</td>
+              <td>17</td>
+              <td>89012345</td>
+            </tr>
+            <tr>
+              <td>Rodrigo Souza</td>
+              <td>18</td>
+              <td>90123456</td>
+            </tr>
+            <tr>
+              <td>Fernando Rodrigues</td>
+              <td>19</td>
+              <td>56789012</td>
+            </tr>
+            <tr>
+              <td>Camila Fernandes</td>
+              <td>20</td>
+              <td>89012345</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="modal-js-example" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Informação do Aluno</p>
+            </header>
+
+            <section class="modal-card-body">
+              <p data-js="nomeAluno"></p>
+              <p data-js="matriculaAluno"></p>
+              <p data-js="documentoAluno"></p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/js/index.js"></script>
+  </body>
+</html>
