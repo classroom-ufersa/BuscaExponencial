@@ -4,29 +4,67 @@ A busca exponencial consiste em buscar um elemento de um array (vetor) quando n�
 
 Para isso, basta encontrar a faixa do vetor em que o elemento está presente, e depois fazer a busca binária para localizar sua posição.
 
+## Tópicos
+- [Organização dos arquivos](#organização-dos-arquivos)
+- [Como executar o código](#como-executar-o-código)
+- [Busca binária](#busca-binária)
+- [Bucas exponencial em C e JS](#busca-exponencial-em-c-e-javascript)
+
 ## Organização dos arquivos
+
 - bin
-    - aluno.o
-    - main.o
+  - aluno.o
+  - main.o
 - out
-    - main.exe
+  - main.exe
 - public
-    - index.c
+  - index.c
 - service
-    - alunos.txt
+  - alunos.txt
 - src
-    - c
-        - aluno.c
-        - aluno.h
-    - css
-        - styles.css
-    - js
-        - index.js
+  - c
+    - aluno.c
+    - aluno.h
+  - js
+    - index.js
+
 ## Como executar o código
+
 Para executar o código é preciso estar no diretório `out` e, no terminal, escrever e executar a linha de comando `./main`.
 
-## Explicação do código que faz a Busca Exponencial
-As funções que realizam a busca exponencial estão separadas por categoria, `buscaExponencialNome`e `buscaExponencialMatricula`, dependendo da opção que o usuário digitar. A declaração de ambas as funções é parecida, mudando apenas o argumento relacionado ao método de busca (nome ou matrícula). Os vetores precisam estar ordenados para que a função funcione.
+## Busca Binária
+
+Para utilizar a busca exponencial, é interessante que se tenha conhecimento de, pelo menos, da busca binária, pois esta será utilizada no algoritmo de busca exponencial.
+
+C:
+
+```c
+int buscaBinariaNome(Alunos **alunos, int index, int posicao, char nome[81]);
+int buscaBinariaMatricula(Alunos **alunos, int index, int posicao, int mat);
+```
+
+JS:
+
+```js
+  binarySearch(start, end, name) {
+    while (start <= end) {
+      let mid = Math.floor(start + (end - start) / 2);
+      if (arrOfNames[mid].nome == name) {
+        return mid;
+      } else if (arrOfNames[mid].nome < name) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
+    }
+
+    return -1;
+  }
+```
+
+## Busca Exponencial em C e JavaScript
+
+As funções que realizam a busca exponencial estão separadas por categoria `buscaExponencialNome` e `buscaExponencialMatricula`, dependendo da opção que o usuário digitar. A declaração de ambas as funções é parecida, mudando apenas o argumento relacionado ao método de busca (nome ou matrícula). Os vetores precisam estar ordenados para que a função funcione.
 
 ```c
 int buscaExponencialNome(Alunos **alunos, char nome[81], int tamanho, int opcao);
@@ -56,10 +94,20 @@ int i = 1;
     }
 ```
 
-## Explicação do funcionamento da Busca Binária
-A busca binária é outro grupo
+No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita uma busca - exponencial - pelo nome de um aluno que é fornecido pelo usuário
 
-```c
-int buscaBinariaNome(Alunos **alunos, int index, int posicao, char nome[81]);
-int buscaBinariaMatricula(Alunos **alunos, int index, int posicao, int mat);
+```js
+  exponentialSearch(name) {
+    let n = arrOfNames.length;
+    if (arrOfNames[0].nome == name) { // verifica se o nome procurado está no index 0 do array
+      return 0;
+    }
+
+    let i = 1;
+    while (i < n && arrOfNames[i].nome <= name) { // encontra o intervalo que em que o nome está presente
+      i *= 2;
+    }
+
+    return this.binarySearch(Math.floor(i / 2), Math.min(i, n - 1), name); // chama a busca binária para encontrar o nome
+  }
 ```
