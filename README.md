@@ -8,7 +8,7 @@ Para isso, basta encontrar a faixa do vetor em que o elemento está presente, e 
 - [Organização dos arquivos](#organização-dos-arquivos)
 - [Como executar o código](#como-executar-o-código)
 - [Busca binária](#busca-binária)
-- [Bucas exponencial em C e JS](#busca-exponencial-em-c-e-javascript)
+- [Busca exponencial em C e JS](#busca-exponencial-em-c-e-javascript)
 
 ## Organização dos arquivos
 
