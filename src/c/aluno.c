@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "aluno.h"
 
@@ -15,6 +16,7 @@ struct alunos
 Alunos *capturaAluno(char nome[81], int matricula, float documento)
 {
     Alunos *a = (Alunos *)malloc(sizeof(Alunos));
+
     strcpy(a->nome, nome);
     a->matricula = matricula;
     a->documento = documento;
@@ -41,6 +43,11 @@ void escreveAluno()
     scanf("%d", &matricula);
     printf("Digite o documento do aluno: ");
     scanf("%f", &documento);
+
+    for (int i = 0; i < 81; i++)
+    {
+        nome[i] = toupper(nome[i]);
+    }
 
     fprintf(f, "%s\t%d\t%.0f\n", nome, matricula, documento);
     fclose(f);
@@ -130,13 +137,20 @@ void ordenaListaMatricula(Alunos **alunos, int tamanho)
 
 int buscaExponencialNome(Alunos **alunos, char nome[81], int tamanho)
 {
-    int i = 1;
+    int i;
+
+    for (i = 0; i < 81; i++)
+    {
+        nome[i] = toupper(nome[i]);
+    }
+
+    i = 1;
 
     if (strcmp(alunos[0]->nome, nome) == 0)
     {
         return 0;
     }
-    while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0) // n
+    while (i < tamanho && strcmp(alunos[i]->nome, nome) <= 0)
     {
         i *= 2;
     }

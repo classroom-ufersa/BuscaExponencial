@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "../src/c/aluno.h"
 
@@ -9,6 +10,7 @@
 
 int main(void)
 {
+
     int index = 0, matricula, buscaMatricula, posicao = 0, op;
     char nome[81], buscaNome[81];
     float documento;
@@ -16,6 +18,17 @@ int main(void)
     Alunos *alunos[MAX_ALUNOS];
 
     FILE *aAluno;
+
+    aAluno = fopen("../service/alunos.txt", "r");
+    // capturando todos os alunos já existentes no arquivo
+    while (!(feof(aAluno)))
+    {
+        fscanf(aAluno, " %[^\t]\t%d\t%f", nome, &matricula, &documento);
+        alunos[index] = capturaAluno(nome, matricula, documento);
+        index++;
+    }
+    index -= 1;
+    fclose(aAluno);
 
     printf("Bem-vindo ao programa de gerenciamento de alunos!\nAutores: Heitor Claudino, Murilo Fontes, Lucas Emanuel e Hector dos Santos\tVersao: 1.0\n");
     do

@@ -5,10 +5,12 @@ A busca exponencial consiste em buscar um elemento de um array (vetor) quando n�
 Para isso, basta encontrar a faixa do vetor em que o elemento está presente, e depois fazer a busca binária para localizar sua posição.
 
 ## Tópicos
+
 - [Organização dos arquivos](#organização-dos-arquivos)
 - [Como executar o código](#como-executar-o-código)
 - [Busca binária](#busca-binária)
 - [Busca exponencial em C e JS](#busca-exponencial-em-c-e-javascript)
+- [Complexidade da Busca exponencial](#complexidade)
 
 ## Organização dos arquivos
 
@@ -111,3 +113,9 @@ No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita um
     return this.binarySearch(Math.floor(i / 2), Math.min(i, n - 1), name); // chama a busca binária para encontrar o nome
   }
 ```
+
+## Complexidade
+
+> No melhor caso: **O(1)**
+
+> Médio ou pior caso: **Log(n)**
