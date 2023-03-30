@@ -117,7 +117,7 @@ No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita um
 
 ## Complexidade
 
-> Complexidade de tempo: **O(1)** (melhor caso) ou **Log(n)** (médio e pior caso)
+> Complexidade de tempo: **O(1)** (melhor caso) ou **O(log n)** (médio e pior caso)
 
 > Complexidade de espaço: **O(1)**
 
