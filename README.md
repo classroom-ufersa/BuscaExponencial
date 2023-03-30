@@ -117,11 +117,12 @@ No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita um
 
 ## Complexidade
 
-> No melhor caso: **O(1)**
+> Complexidade de tempo: **O(1)** (melhor caso) ou **Log(n)** (médio e pior caso)
 
-> Médio ou pior caso: **Log(n)**
+> Complexidade de espaço: **O(1)**
 
 ## Referências
 - [Exponential Search](https://mycareerwise.com/programming/category/searching/exponential-search)
+- [Exponential Search Algorithm](https://iq.opengenus.org/fuzzy-search-algorithm/)
 - [Busca binária iterativa e recursiva na linguagem C (vídeo do YouTube)](https://www.youtube.com/watch?v=CXUtxmwy1RU)
 - [C strcmp()](https://www.programiz.com/c-programming/library-function/string.h/strcmp)
