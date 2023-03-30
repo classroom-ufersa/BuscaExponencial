@@ -119,3 +119,6 @@ No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita um
 > No melhor caso: **O(1)**
 
 > Médio ou pior caso: **Log(n)**
+
+## Referências
+- [C strcmp()](https://www.programiz.com/c-programming/library-function/string.h/strcmp)
