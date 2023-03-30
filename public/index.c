@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 #include "../src/c/aluno.h"
 
@@ -14,6 +15,8 @@ int main(void)
     int index = 0, matricula, buscaMatricula, posicao = 0, op;
     char nome[81], buscaNome[81];
     float documento;
+    float time_spent;
+    clock_t begin, end;
 
     Alunos *alunos[MAX_ALUNOS];
 
@@ -58,7 +61,11 @@ int main(void)
             printf("Digite o nome da aluno: ");
             scanf(" %[^\n]s", buscaNome);
             ordenaListaNome(alunos, index);
+            begin = clock();
             posicao = buscaExponencialNome(alunos, buscaNome, index);
+            end = clock();
+            time_spent = (end - begin) * 100000000000000;
+            printf("Tempo transcorrido: %.10f\n", time_spent);
             posicao == -1 ? printf("\nAluno inexistente!\n") : exibeAluno(alunos, posicao);
             break;
         case 3:
