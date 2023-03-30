@@ -11,7 +11,7 @@ Para isso, basta encontrar a faixa do vetor em que o elemento está presente, e 
 - [Busca binária](#busca-binária)
 - [Busca exponencial em C e JS](#busca-exponencial-em-c-e-javascript)
 - [Complexidade da Busca exponencial](#complexidade)
-- [Referências](#referencias)
+- [Referências](#referências)
 
 ## Organização dos arquivos
 
