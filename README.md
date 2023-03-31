@@ -115,6 +115,9 @@ No JavaScript, a lógica é mesma da linguagem C. No método abaixo, é feita um
   }
 ```
 
+
+Ainda ficou com dúvidas? Então nosso vídeo explicando sobre esse algoritmo de busca possa de ajudar. [Clique aqui](https://youtu.be/0BHW1ExaqZI) para ver!
+
 ## Complexidade
 
 > Complexidade de tempo: **O(1)** (melhor caso) ou **O(log n)** (médio e pior caso)
